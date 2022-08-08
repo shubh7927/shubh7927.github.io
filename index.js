@@ -1,62 +1,83 @@
-let burgerList = document.getElementById("burgerList");
-let burgerMenu = document.getElementById("burgerMenu");
-let burgerMenuBars = document.querySelectorAll(".bars");
-let nameField = document.getElementById("nameField");
-let emailField = document.getElementById("email");
-let submitBtn = document.getElementById("submit");
-let navContainer = document.getElementById("navContainer");
-let heroSection = document.getElementById("heroSection");
+let taskField = document.getElementById("taskField");
+let addTaskBtn = document.getElementById("addTaskBtn");
+let toDoTaskContainer = document.getElementById("toDoTaskContainer");
+let finishedTaskContainer = document.getElementById("finishedTaskContainer");
+let errorNotification = document.getElementById("errorNotification");
+let successNotification = document.getElementById("successNotification");
 
-
-let burgerMenuOpen = false;
-burgerMenu.addEventListener("click", () => {
-    if (burgerMenuOpen == false) {
-        burgerList.classList.remove("translate-x-[-100%]");
-        burgerMenuBars[1].style.display = "none";
-        burgerMenuBars[0].style.transform = "rotate(45deg) translateY(1vh)";
-        burgerMenuBars[2].style.transform = "rotate(-45deg) translateY(-1vh)";
+addTaskBtn.addEventListener("click", () => {
+    let taskDescription = taskField.value.trim();
+    if (taskDescription.length == 0) {
+        errorNotification.classList.remove("translate-x-[100%]");
+        setTimeout(()=>{
+            errorNotification.classList.add("translate-x-[100%]");
+        },3000)
     } else {
-        burgerList.classList.add("translate-x-[-100%]");
-        burgerMenuBars[1].style.display = "block";
-        burgerMenuBars[0].style.transform = "none";
-        burgerMenuBars[2].style.transform = "none";
+        addTask(taskDescription);
+        successNotification.classList.remove("translate-x-[100%]");
+        setTimeout(()=>{
+            successNotification.classList.add("translate-x-[100%]");
+        },3000)
     }
-    burgerMenuOpen = !burgerMenuOpen;
+    taskField.value = "";
 })
 
-window.addEventListener("scroll", () => {
-    if (burgerMenuOpen==true && window.scrollY > 0) {
-        console.log("open and scrolled");
-        burgerList.classList.add("translate-x-[-100%]");
-        burgerMenuBars[1].style.display = "block";
-        burgerMenuBars[0].style.transform = "none";
-        burgerMenuBars[2].style.transform = "none";
-        burgerMenuOpen = !burgerMenuOpen;
-    }
-})
-window.addEventListener("scroll",()=>{
-    console.log(window.scrollY);
-    if(window.scrollY!=0){
-        navContainer.classList.add("bg-black");
-    }else{
-        navContainer.classList.remove("bg-black");
-    }
-})
+let addTask = (task) => {
+    let taskItem = document.createElement("div");
+    taskItem.classList.add("w-[100%]", "border-b-[2px]", "border-solid", "border-black", "flex", "pl-2");
+    let iconClass = "check";
+    taskItem.innerHTML = `  <div class="w-[86%] pt-3 pb-3">
+                                ${task}
+                            </div>
+                            
+                            <button class="completedBtn fa fa-${iconClass} bg-green-600 w-[7%] pt-3 pb-3 flex justify-center items-center">
+                            </button>
+                            
+                            <button class="deleteBtn fa fa-trash-o bg-red-600 w-[7%] flex justify-center items-center pt-3 pb-3">
+                            </button> `;
+                                    
+    let completedBtn = taskItem.querySelector(".completedBtn");
+    completedBtn.addEventListener("click", (e) => {
+        let taskDesc = e.target.previousElementSibling.innerText;
+        let parent = e.target.parentElement;
+        parent.remove();
+        addToFinished(taskDesc);
+    })
+    let deleteBtn = taskItem.querySelector(".deleteBtn");
+    deleteBtn.addEventListener("click", (e) => {
+        let parent = e.target.parentElement;
+        parent.remove();
+    })
+    toDoTaskContainer.appendChild(taskItem);
+    
+}
 
+let addToFinished = (task)=>{
+    let taskItem = document.createElement("div");
+    taskItem.classList.add("w-[100%]", "border-b-[2px]", "border-solid", "border-black", "flex", "pl-2");
+    let iconClass = "times";
+    taskItem.innerHTML = `  <div class="w-[86%] pt-3 pb-3">
+                                ${task}
+                            </div>
+                            
+                            <button class="notCompletedBtn fa fa-${iconClass} bg-green-600 w-[7%] pt-3 pb-3 flex justify-center items-center" >
+                            </button>
+                            
+                            <button class="deleteBtn fa fa-trash-o bg-red-600 w-[7%] flex justify-center items-center pt-3 pb-3">
+                            </button> `
+                        
+    let notCompletedBtn = taskItem.querySelector(".notCompletedBtn");
+    notCompletedBtn.addEventListener("click", (e) => {
+        let taskDesc = e.target.previousElementSibling.innerText;
+        let parent = e.target.parentElement;
+        parent.remove();
+        addTask(taskDesc);
+    })
+    let deleteBtn = taskItem.querySelector(".deleteBtn");
+    deleteBtn.addEventListener("click", (e) => {
+        let parent = e.target.parentElement;
+        parent.remove();
+    })
+    finishedTaskContainer.appendChild(taskItem);
+}
 
-document.getElementById("weatherContainer").addEventListener("click", () => {
-    let place = prompt("Enter your city plaese").toLowerCase();
-    var weather = async () => {
-        var url = `https://api.openweathermap.org/data/2.5/weather?q=${place}&APPID=969c0be19fd6cc047db3e1a6be5086ff`;
-        var res = await fetch(url);
-        res = await res.json();
-        var temp = Math.round(res.main.temp - 273.15);
-        document.getElementById("weatherContainer").innerHTML = ` <span>${temp} &#176;C </span>
-        <div>at ${place}</div>`
-    }
-    weather();
-})
-
-submitBtn.addEventListener("click", () => {
-    alert(`Hi ${nameField.value}, please confirm your mail ${emailField.value} is correct.`);
-})

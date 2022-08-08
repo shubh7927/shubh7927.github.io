@@ -5,228 +5,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./index.js" defer></script>
-    <title>Buy Gadgets Online - iGadgets.com</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Simple TO-DO List</title>
 </head>
 
-<body class="overflow-x-hidden">
-    <div id="weatherContainer" class="fixed bottom-5 right-0 bg-black text-white flex flex-col items-center p-2" >Click Here to get weather</div>
-    <!-- Burger Menu -->
-    <div id="burgerList" class="absolute top-0 left-0 h-full w-[50vw] bg-[rgba(0,0,0)] text-white flex flex-col p-5 justify-around md:hidden translate-x-[-100%] transition-transform">
-        <div id="logo" class="flex flex-col justify-center items-center h-[8vh]">
-            <img src="./Assets/gadget.png" class="h-full" alt="">
-            <a href=""><div id="name" class="text-md">iGadgets.com</div></a>
-        </div>
-            <ul id="list" class="flex flex-col text-xl justify-around h-[70%]">
-                <li class="listItem grow"><a href="./products.html">Products</a></li>
-                <li class="listItem grow"><a href="./sigin.html">SignIn</a></li>
-                <li class="listItem grow"><a href="./signup.html">SignUp</a></li>
-                <li class="listItem grow"><a href="#container">Contact</a></li>
-            </ul>
-        
-    </div>
+<body class="text-white overflow-x-hidden font-[poppins]">
 
-    <!-- Navbar -->
-    <div id="navContainer" class="fixed top-0 left-0 w-[100vw] h-[10vh]  flex justify-end md:justify-center transition-colors">
-        <div id="nav" class="hidden md:flex justify-around items-center h-full w-[98vw] text-white ">
-            <div id="logo" class="flex justify-center items-center h-[8vh] basis-1/4">
-                <img src="./Assets/gadget.png" class="h-full" alt="">
-                <a href=""><div id="name" class="ml-2">iGadgets.com</div></a>
-            </div>
-            <div id="menu" class="flex basis-1/2">
-                <ul id="list" class="flex grow text-xl text-[white]">
-                    <li class="listItem grow"><a href="./products.html">Products</a></li>
-                    <li class="listItem grow"><a href="./sigin.html">SignIn</a></li>
-                    <li class="listItem grow"><a href="./signup.html">SignUp</a></li>
-                    <li class="listItem grow"><a href="#container">Contact</a></li>
-                </ul>
-            </div>
-            <div id="button" class="flex basis-1/4 justify-center items-center">
-                <button class="border-2 border-[greenyellow] p-2 border-solid text-[greenyellow]">Order Now</button>
-                <div id="cart" class="fa fa-shopping-cart ml-5 text-xl p-2">
+    <div class="fixed w-full h-[12vh] bg-[rgb(35,24,50)] flex justify-center items-center">
+        <input type="text" id="taskField" class="p-1 md:pt-3 md:pb-3 md:pl-2 md:pr-2 rounded-[5px] outline-none text-[rgb(86,61,124)]">
+        </input>
+        <button id="addTaskBtn"
+            class="border-solid border-[2px] border-[rgb(0,123,255)] text-[rgb(0,123,255)] p-1 md:pt-3 md:pb-3 md:pr-5 md:pl-5 ml-4 rounded-[5px]">
+            Add
+        </button>
+    </div>
+    <div class="h-[12vh] mb-5 md:mb-0"></div>
+    <div id="listContainer" class="md:h-[88vh] flex flex-col md:flex-row items-center">
+        <div class="w-[90%] md:w-[45%] h-[80vh] md:h-[100%] flex items-center justify-center">
+            <div class="flex flex-col h-[90%] w-[90%] md:w-[80%] rounded-[10px] md:rounded-[20px] bg-[rgb(35,24,50)]">
+                <div class="flex justify-center items-center h-[10%] text-center text-xl md:text-2xl">To-Do Tasks</div>
+                <div id="toDoTaskContainer" class="flex flex-col bg-[rgb(86,61,124)] h-[80%]">
                 </div>
             </div>
-
         </div>
-        <div id="burgerMenu" class="transition-transform md:hidden self-center justify-self-end mr-4">
-            <div class="bars h-[2px] w-[35px] mb-2 bg-white"></div>
-            <div class="bars h-[2px] w-[35px] mb-2 bg-white"></div>
-            <div class="bars h-[2px] w-[35px] bg-white"></div>
-        </div>
-    </div>
-
-    <div id="heroSection" class="bg-[url('./Assets/gadgets.jpg')] h-[80vh] w-[100vw] bg-cover bg-center flex justify-center items-center">
-        <div id="content " class="text-white md:w-[90%] bg-[rgb(0,0,0,0.4)] p-5">
-            <h1 id="headingPrimary" class="text-[24px] md:text-[50px] font-[lobster] mb-2">
-                Best Products.Best Services.
-            </h1>
-            <p class="text-[14px] md:text-[22px] font-[poppins]">
-                iGadgets provides the best products and world class customer Services. 1000+ customers shop daily with iGadgets.com. So,what are you waiting for?
-            </p>
-            <p class="text-[14px] md:text-[22px] font-[poppins]">
-                Order your product now.</p>
-            </p>
-            <button class="border-2 border-[greenyellow] p-2 border-solid text-[greenyellow] mt-5">Order Now</button>
-        </div>
-    </div>
-
-
-    <!-- Products Section -->
-    <div id="productSection">
-        <h1 class="text-center text-[32px] md:text-[50px] font-[lobster] mt-2 mb-2">Our Products</h1>
-        <div id="card" class="flex flex-col md:flex-row w-[100vw] items-center">
-            <div class="cardItem p-5 mt-2 mb-2 md:m-2 md:h-[80vh] w-[90%] md:basis-[33%] border-solid border-[1px] rounded-[10px] border-black flex flex-col" id="item1">
-                <img class="product-img h-[30vh] self-center" src="./Assets/iphone11.jpeg" alt="">
-                <h2 class="self-center"> iPhone 11(Red,64GB)</h2>
-                <h3 class="self-center">₹61,499</h3>
-                <span class="font-bold">Key Specifications:</span>
-                <ul>
-                    <li>A13 Bionic Chipset</li>
-                    <li>12MP+12MP|12MP Front Camera</li>
-                    <li>6.1 inch HD Display</li>
-                </ul>
-                <div class="addToCart">
-                    <button class="border-2 border-black p-1 md:p-2 border-solid text-black mt-5">View</button>
-                    <button class="border-2 border-[greenyellow] p-1 md:p-2 border-solid text-[greenyellow] mt-5">Add to Cart</button>
-                </div>
-            </div>
-            <div class="cardItem p-5 mt-2 mb-2 md:m-2 md:h-[80vh] w-[90%] md:basis-[33%] border-solid border-[1px] rounded-[10px] border-black flex flex-col" id="item2">
-                <img class="product-img h-[30vh] self-center" src="./Assets/asus.jpeg" alt="">
-                <h2 class="self-center"> asus Vivobook </h2>
-                <h3 class="self-center">₹44,999</h3>
-                <span class="font-bold" >Key Specifications:</span>
-                <ul>
-                    <li>Intel i7 10th Generation Processor</li>
-                    <li>1TB HDD 512GB SSD</li>
-                    <li>16 inch FHD+ Display</li>
-                </ul>
-                <div class="addToCart">
-                    <button class="border-2 border-black p-1 md:p-2 border-solid text-black mt-5">View</button>
-                    <button class="border-2 border-[greenyellow] p-1 md:p-2 border-solid text-[greenyellow] mt-5">Add to Cart</button>
-                </div>
-            </div>
-            <div class="cardItem p-5 mt-2 mb-2 md:m-2 md:h-[80vh] w-[90%] md:basis-[33%] border-solid border-[1px] rounded-[10px] border-black flex flex-col" id="item3">
-                <img class="product-img h-[30vh] self-center" src="./Assets/speaker.jpeg" alt="">
-                <h2 class="self-center"> bOAt Speakers</h2>
-                <h3 class="self-center">₹1,199</h3>
-                <span class="font-bold">Key Specifications:</span>
-                <ul>
-                    <li>Dolby Sound High Bass</li>
-                    <li>Bluetooth Speakers</li>
-                    <li>Water Resistant</li>
-                </ul>
-
-                <div class="addToCart">
-                    <button class="border-2 border-black p-1 md:p-2 border-solid text-black mt-5">View</button>
-                    <button class="border-2 border-[greenyellow] p-1 md:p-2 border-solid text-[greenyellow] mt-5">Add to Cart</button>
+        <div class="w-[100%] md:w-[10%] h-[5vh] md:h-[100%]"></div>
+        <div class="w-[90%] md:w-[45%] h-[80vh] md:h-[100%] flex items-center justify-center">
+            <div class="flex flex-col h-[90%] w-[90%] md:w-[80%] rounded-[10px] md:rounded-[20px] bg-[rgb(35,24,50)]">
+                <div class="flex justify-center items-center h-[10%] text-center text-xl md:text-2xl">Finished Tasks</div>
+                <div id="finishedTaskContainer" class="flex flex-col bg-[rgb(86,61,124)] h-[80%]">
                 </div>
             </div>
         </div>
 
-        <div id="more" class="text-center text-[yellowgreen]"><a href="./products.html">View More Products >></a> </div>
     </div>
 
-    <!-- Customer Review Section -->
-    <div id="reviewSection" class="mt-5 mb-5">
-        <h1 class="text-center text-[32px] md:text-[50px] font-[lobster] mt-2 mb-2">
-            Customer's Review
-        </h1>
-        <div class="flex flex-col items-center w-[100vw]">
-            <div class="review w-[100%] md:w-[70%] p-2 flex flex-col items-center mt-5 mb-5">
-                <img src="./Assets/female1.jpg" class="rounded-full w-[50%] md:w-[15%] mb-4" alt="">
-                <p class="text-center italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt quidem omnis nemo officiis
-                    expedita laborum vel molestiae iste sunt voluptas, culpa facere, neque, ipsa sed voluptate quas! Quam
-                    deserunt modi saepe eius in!"</p>
-                <p>- Evinha Lewis</p>
-            </div>
-            <div class="review w-[100%] md:w-[70%] p-2 flex flex-col items-center mt-5 mb-5">
-                <img src="./Assets/male1.jpg" class="rounded-full w-[50%] md:w-[15%] mb-4" alt="">
-                <p class="text-center italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt quidem omnis nemo officiis
-                    expedita laborum vel molestiae iste sunt voluptas, culpa facere, neque, ipsa sed voluptate quas! Quam
-                    deserunt modi saepe eius in!"</p>
-                <p>- Ian Smith</p>
-            </div>
-            <div class="review w-[100%] md:w-[70%] p-2 flex flex-col items-center mt-5 mb-5">
-                <img src="./Assets/male2.jpg" class="rounded-full w-[50%] md:w-[15%] mb-4" alt="">
-                <p class="text-center italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt quidem omnis nemo officiis
-                    expedita laborum vel molestiae iste sunt voluptas, culpa facere, neque, ipsa sed voluptate quas! Quam
-                    deserunt modi saepe eius in!"</p>
-                <p>- Will Anderson</p>
-            </div>
-            <div class="review w-[100%] md:w-[70%] p-2 flex flex-col items-center mt-5 mb-5">
-                <img src="./Assets/male3.jpg" class="rounded-full w-[50%] md:w-[15%] mb-4" alt="">
-                <p class="text-center italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt quidem omnis nemo officiis
-                    expedita laborum vel molestiae iste sunt voluptas, culpa facere, neque, ipsa sed voluptate quas! Quam
-                    deserunt modi saepe eius in!"</p>
-                <p>- James Cloak</p>
-            </div>
-            <div class="review w-[100%] md:w-[70%] p-2 flex flex-col items-center mt-5 mb-5">
-                <img src="./Assets/female2.jpg" class="rounded-full w-[50%] md:w-[15%] mb-4" alt="">
-                <p class="text-center italic">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt quidem omnis nemo officiis
-                    expedita laborum vel molestiae iste sunt voluptas, culpa facere, neque, ipsa sed voluptate quas! Quam
-                    deserunt modi saepe eius in!"</p>
-                <p>- Amantha Stone</p>
-            </div>
-        </div>
+    <div id="errorNotification"
+        class="fixed bg-[rgba(255,0,0,.8)] flex flex-col bottom-5 right-0 p-2 md:w-[20vw] translate-x-[100%] transition-[transform] duration-500">
+        <p class="font-bold mb-1">ERROR!!!</p>
+        <p>Cannot Add an Empty Task</p>
+        <p> Please Enter a Valid Task</p>
+    </div>
+    <div id="successNotification"
+        class="fixed  bg-[rgba(0,255,0,.9)] flex flex-col bottom-5 right-0 p-2 md:w-[20vw] translate-x-[100%] transition-[transform] duration-500">
+        <p class="font-bold mb-1">Success!!!</p>
+        <p>Task Added Successfully.</p>
 
     </div>
-
-    <!-- CTA Section -->
-    <div id="ctaSection" class="bg-[yellowgreen] text-white flex flex-col items-center justify-center h-[50vh] mb-5">
-        
-            <div class="font-[poppins] text-[20px] md:text-[36px]">Fascinated with the Products?</div>
-            <div class="font-[poppins] text-[20px] md:text-[36px]">Get one for yourself too!</div>
-            <button class="border-solid border-[2px] border-white p-2 mt-4">Order Now</button>
-        
-    </div>
-
-    <!-- Footer Section -->
-    <div id="footerSection" class="mt-5 p-5">
-        <div id="footerContent" class="flex flex-col md:flex-row md:justify-between md:items-center">
-            <div id="footContent" class="md:w-[30%]">
-                iGadget.com is an online electronic gadget selling platform.We believe in customer's satisfaction and
-                luxury that is why we provide best quality products to our customers.
-                Come join our community and enjoy our services. Place your order today.
-            </div>
-            <div id="form" class="md:w-[30%]">    
-                <h3 class="text-center font-[lobster] text-[28px] mt-2 mb-2">Reach out us:</h3>
-                <form id="contactForm" action="">
-                    <div class="m-2">
-                        <label for="name" class="block">Name</label>
-                        <input type="text" name="name" class="md:w-full border-solid border-[1px] border-black" id="nameField"></input>
-                    </div>
-                    <div class="m-2">
-                        <label for="email" class="block">Email Address</label>
-                        <input type="email" name="email" class="md:w-full border-solid border-[1px] border-black" id="email"></input>
-                    </div>
-                    <div class="m-2">
-                        <label for="message" class="block">Message</label>
-                        <textarea name="message" class="md:w-full border-solid border-[1px] border-black" id="message"></textarea>
-                    </div>
-                    <div class="m-2">
-                        <button id="submit" class="bg-[yellowgreen] p-2 text-white rounded-[5px]">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div id="social" class="text-center mt-4">
-            <h3 class="font-[lobster] text-[28px]">Follow us at</h3>
-            <div id="socialHandles" class="text-[24px]">
-                <span class="p-4"><i class="fa fa-twitter"></i></span>
-                <span class="p-4"><i class="fa fa-facebook"></i></span>
-                <span class="p-4"><i class="fa fa-instagram"></i></span>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 </html>
